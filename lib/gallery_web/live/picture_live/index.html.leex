@@ -1,0 +1,31 @@
+<h1>Listing Pictures</h1>
+
+<%= if @live_action in [:new] do %>
+  <%= live_modal @socket, GalleryWeb.PictureLive.FormComponent,
+    id: @picture.id || :new,
+    title: @page_title,
+    action: @live_action,
+    picture: @picture,
+    return_to: Routes.picture_index_path(@socket, :index) %>
+<% end %>
+
+<span><%= live_patch "New Picture", to: Routes.picture_index_path(@socket, :new) %></span>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="pictures">
+    <%= for pictures <- @list_of_pictures do %>
+      <tr>
+        <%= for picture <- pictures do %>
+          <td><img src="<%= picture.url %>" height="150" /></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -18,6 +18,8 @@ defmodule GalleryWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/pictures", PictureLive.Index, :index
+    live "/pictures/new", PictureLive.Index, :new
   end
 
   # Other scopes may use custom stacks.
